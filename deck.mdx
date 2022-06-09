@@ -1,0 +1,1999 @@
+import {
+  CodeSurfer,
+  CodeSurferColumns,
+  Step,
+} from "code-surfer";
+import { github, vsDark } from "@code-surfer/themes";
+
+import wutImage from './assets/what.gif';
+import frontEnds from './assets/avr.png';
+import init from './assets/init.png';
+import end1 from './assets/end1.png';
+import end2 from './assets/end2.png';
+import list from './assets/list.png';
+import codeQ from './assets/code.png';
+import programmer from './assets/programer.png';
+import inter from './assets/inter.svg';
+import services from './assets/services.svg';
+import solid from './assets/solid.png';
+import me from './assets/me.png';
+import julianjs from './assets/julianjs.png';
+import why from './assets/why.gif';
+import wc from './assets/wc.png';
+import eyes from './assets/eyes.jpg';
+import dry from './assets/dry.png';
+import coupling from './assets/coupling.png';
+import depends from './assets/depends.jpg';
+import vein from './assets/vena.jpg';
+
+import Audio from './Audio/Audio';
+
+import laugh from './assets/videos/pasaran.mp4';
+import no from './assets/videos/no.mp4';
+import back from './assets/sounds/back.mp3';
+
+export const theme = vsDark;
+
+# Component Design Tricks v2 💪
+
+npm install component-design-tricks@2.0.1
+
+<!-- Temas
+- UNIX - It's ok to do one thing if you do it well
+- API Maintenance Performance A11y
+- Make no assumptions have no regrets / react to changes props etc
+
+<a onClick={() => window.location.pathname = '3'}>Hola</a>
+
+Contexto
+- Somos máquinas de hacer componentes reutilizables, investigamos, nos entrenan para ver un diseño
+  y mapear mentalmente todos los componentes altamente reutilizables, mantenibles, simples, fáciles
+  de entender, modificar, componer
+- Empezar hablando del código de mala calidad, poca mantenibilidad, sufrimiento de los mentees
+- Contar experiencia de Web Components
+- Definir:
+  1. Mantenibilidad
+  2. Extensibilidad
+
+- Caemos en SOLID
+
+-->
+
+---
+
+<img src={init} style={{ height: '100%' }} />
+
+---
+
+## About the speaker
+
+<div style={{ textAlign: 'left', display: 'flex', alignItems: 'center', padding: '0 150px' }}>
+  <img src={me} style={{ width: '550px', marginRight: '100px' }} />
+  <ul>
+    <li>Known as Julian</li>
+    <li>Creator of Julian.js</li>
+    <li>He does not send <b>pull requests</b> but <b>merge demands</b></li>
+  </ul>
+</div>
+
+---
+
+<img src={julianjs} style={{ height: '100%' }} />
+
+---
+
+## SOLID at the frontend
+
+<img src={why} style={{ height: '60%' }} />
+
+---
+
+¿Is it hard to add new features or fixing bugs to your code?
+
+<video
+  autoplay
+  src={no}
+  style={{ height: '80%' }} />
+
+---
+
+# Content 👀
+
+<ol style={{ padding: '0 60px' }}>
+  <li>Testing</li>
+  <li>Mantenibilidad</li>
+  <li>Extensibilidad</li>
+  <li>Patrones</li>
+  <li>SOLID</li>
+  <li>DRY</li>
+  <li>KISS</li>
+  <li>Web Components</li>
+</ol>
+
+---
+
+<video 
+  autoplay 
+  src={laugh}
+  style={{ height: '80%' }} />
+
+---
+
+## Content
+
+<div style={{ textAlign: 'left', display: 'flex', alignItems: 'center' }}>
+  <div>
+    <ol>
+      <li>Maintainability</li>
+      <li>Extensibility</li>
+      <li>SOLID</li>
+      <li>DRY, KISS, YAGNI...</li>
+      <li>💥 Tricks 💥</li>
+    </ol>
+  </div>
+  <img src={list} style={{ width: '300px', marginLeft: '100px' }} />
+</div>
+
+---
+
+# Maintainability
+
+---
+
+## Maintainability
+
+Please [read](https://martinfowler.com/articles/is-quality-worth-cost.html)
+
+---
+
+## Maintainability
+
+Please [read](https://martinfowler.com/articles/is-quality-worth-cost.html)
+
+Seriously, read [THIS](https://martinfowler.com/articles/is-quality-worth-cost.html) NOW!
+
+---
+
+## Maintainability
+
+TLDR; Easy to maintain software.
+
+---
+
+## Maintainability
+
+<div style={{ textAlign: 'left', display: 'flex', alignItems: 'center' }}>
+  <img src={codeQ} style={{ width: '550px', marginRight: '100px' }} />
+  <div>
+    <ol>
+      <li>🐞 easy to track/fix</li><br />
+      <li>Measured by</li>
+      <ol type="a">
+        <li>Modularity</li>
+        <li>Reusability</li>
+        <li>Ability to be</li>
+        <ul style={{ color: 'green' }}>
+          <li>Analyzed</li>
+          <li>Modified</li>
+          <li>Tested</li>
+        </ul>
+      </ol>
+    </ol>
+  </div>
+</div>
+
+---
+
+# Extensibility
+
+---
+
+## Extensibility
+
+<div style={{ textAlign: 'left', display: 'flex', alignItems: 'center', padding: '0 150px' }}>
+  <i>
+    "When new features are requested, you should add more code rather than modifying the
+    tested and working one"
+  </i>
+  <img src={programmer} style={{ width: '550px', margin: '0 100px' }} />
+</div>
+
+---
+
+# SOLID
+
+---
+
+<div style={{ textAlign: 'left', display: 'flex', alignItems: 'center', padding: '0 150px' }}>
+  <img src={solid} style={{  }} />
+</div>
+
+[Original article](https://didemeren.medium.com/solid-principles-in-practice-a9771a746f6c)
+
+---
+
+- **YAGNI**: You ain't gonna need it
+- **DRY**: Don't repeat yourself
+- **KISS**: Keep it simple son
+
+---
+
+# Tricks
+
+---
+
+# Single responsability principle
+
+*It's ok to do one thing if you do it well*
+
+---
+
+*Let's do a quick review about composition*
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+  render() {
+    return (
+      <input class="nice-input" />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+
+  @Prop() placeholder;
+
+  render() {
+    return (
+      <input 
+        class="nice-input"
+        placeholder={this.placeholder} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input 
+  placeholder="Type your name" />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+
+  @Prop() placeholder;
+  @Prop() type;
+  @Prop() pattern;
+  @Prop() autocomplete;
+  @Prop() autofocus;
+  @Prop() min;
+  @Prop() max;
+  @Prop() disabled;
+  @Prop() readonly;
+  @Prop() required;
+  @Prop() value;
+  @Prop() name;
+  @Prop() id;
+
+  render() {
+    return (
+      <input 
+        class="nice-input"
+        placeholder={this.placeholder}
+        type={this.type}
+        pattern={this.pattern}
+        autocomplete={this.autocomplete}
+        autofocus={this.autofocus}
+        min={this.min}
+        max={this.max}
+        disabled={this.disabled}
+        readonly={this.readonly}
+        required={this.required}
+        value={this.value}
+        name={this.name}
+        id={this.id} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input 
+  placeholder="Type your lastname"
+  type="text"
+  pattern="[0-9]"
+  autcomplete
+  autofocus
+  min="3"
+  max="15"
+  disabled="false"
+  readonly
+  required
+  value="Martinez"
+  name="lastname"
+  id="id" />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+
+  constructor() {
+    const input = this.somehowGetTheChildInput();
+    input.classList.add('nice-input');
+  }
+
+  render() {
+    return (
+      <slot />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input>
+  <input
+    placeholder="Type your lastname" />
+</fancy-input>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+
+  @Prop() icon;
+  @Prop() debounce;
+  @Prop() showError;
+  @Prop() disableHover;
+  @Prop() enableAirplaneMode;
+  @Prop() hackNetflix;
+
+  constructor() {
+    const input = this.somehowGetTheChildInput();
+    input.classList.add('nice-input');
+  }
+
+  render() {
+    return (
+      <slot />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input>
+  <input
+    placeholder="Type your lastname" />
+</fancy-input>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+
+  @Prop() icon;
+  @Prop() debounce;
+  @Prop() showError;
+  @Prop() disableHover;
+  @Prop() enableAirplaneMode;
+  @Prop() hackNetflix;
+
+  constructor() {
+    const input = this.somehowGetTheChildInput();
+    input.classList.add('nice-input');
+  }
+
+  render() {
+
+    if (this.showError) {
+      return (
+        <div>
+          <slot />
+          <span>An error</span>
+        </div>
+      );
+    } else if (this.anything) {
+      // ...
+    }
+
+    return (
+      <slot />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input>
+  <input
+    showError
+    placeholder="Type your lastname" />
+</fancy-input>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Remember
+
+*It's ok to do one thing if you do it well*
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+
+  @Prop() icon;
+
+  constructor() {
+    const input = this.somehowGetTheChildInput();
+    input.classList.add('nice-input');
+  }
+
+  render() {
+
+    if (this.icon) {
+      return (
+        <div>
+          <slot />
+          <span>{this.icon}</span>
+        </div>
+      );
+    }
+
+    return (
+      <slot />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input icon="calendar">
+  <input
+    type="date"
+    placeholder="Type your lastname" />
+</fancy-input>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+  constructor() {
+    const input = this.somehowGetTheChildInput();
+    input.classList.add('nice-input');
+  }
+
+  render() {
+    return (
+      <slot />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<fancy-input>
+  <input
+    type="date"
+    placeholder="Type your lastname" />
+</fancy-input>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-input.component.js"
+class FancyInput {
+  constructor() {
+    const input = this.somehowGetTheChildInput();
+    input.classList.add('nice-input');
+  }
+
+  render() {
+    return (
+      <slot />
+    );
+  }
+}
+
+class WithIcon {
+  @Prop() icon;
+
+  render() {
+    return (
+      <>
+        <slot />
+        <span>{this.icon}</span>
+      </>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-input.html"
+<with-icon icon="calendar">
+  <fancy-input>
+    <input
+      type="date"
+      placeholder="Type your lastname" />
+  </fancy-input>
+</with-icon>
+```
+
+</Step>
+
+<Step>
+
+```diff 4,15,21
+```
+
+```diff 1[12:25],3[6:11]
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Trick #1
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>Make your components highly composable</b>
+</i>
+
+*Try not to design huge components with lots of features*
+<span style={{ color: '#ff7171', marginTop: '-50px' }}>
+  That will make them harder to maintain
+</span>
+
+---
+
+# Open closed principle
+
+*Plan for the future*
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return null;
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() items: Array<{
+    label: string;
+    value: string;
+  }>;
+
+  render() {
+    return (
+      <div>
+        {this.items.map(item => (
+          <div>{item.label}</div>
+        ))}
+      </div>
+    );
+  }
+}
+```
+
+```jsx title="HTML code" subtitle="fancy-select.html"
+<fancy-select items="[
+  {
+    label: 'Option 1',
+    value: 0,
+  },
+  {
+    label: 'Option 2',
+    value: 1,
+  },
+]" />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() items: Array<{
+    label: string;
+    value: string;
+    icon: string;
+  }>;
+
+  render() {
+    return (
+      <div>
+        {this.items.map(item => (
+          <div>{item.label}</div>
+        ))}
+      </div>
+    );
+  }
+}
+```
+
+```jsx title="HTML code" subtitle="fancy-select.html"
+<fancy-select items="[
+  {
+    label: 'Option 1',
+    value: 0,
+    icon: 'calendar',
+  },
+  {
+    label: 'Option 2',
+    value: 1,
+    icon: 'flag',
+  },
+]" />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() items: Array<{
+    label: string;
+    value: string;
+    icon: string;
+    disabled: boolean;
+  }>;
+
+  render() {
+    return (
+      <div>
+        {this.items.map(item => (
+          <div>{item.label}</div>
+        ))}
+      </div>
+    );
+  }
+}
+```
+
+```jsx title="HTML code" subtitle="fancy-select.html"
+<fancy-select items="[
+  {
+    label: 'Option 1',
+    value: 0,
+    icon: 'calendar',
+  },
+  {
+    label: 'Option 2',
+    value: 1,
+    icon: 'flag',
+    disabled: true,
+  },
+]" />
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Composition to the rescue 🤯
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() items: Array<{
+    label: string;
+    value: string;
+    icon: string;
+    disabled: boolean;
+  }>;
+
+  render() {
+    return (
+      <div>
+        {this.items.map(item => (
+          <div>{item.label}</div>
+        ))}
+      </div>
+    );
+  }
+}
+```
+
+```jsx title="HTML code" subtitle="fancy-select.html"
+<fancy-select items="[
+  {
+    label: 'Option 1',
+    value: 0,
+    icon: 'calendar',
+  },
+  {
+    label: 'Option 2',
+    value: 1,
+    icon: 'flag',
+    disabled: true,
+  },
+]" />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+```
+
+```jsx title="HTML code" subtitle="fancy-select.html"
+<fancy-select />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOption {
+
+  @Prop() value;
+
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select>
+  <fancy-select-option value="0">
+    Option 1
+  </fancy-select-option>
+  <fancy-select-option value="1">
+    Option 2
+  </fancy-select-option>
+</fancy-select>
+```
+
+</Step>
+
+<Step>
+
+```diff 11:22
+```
+
+```diff 2:7
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOption {
+
+  @Prop() value;
+  @Prop() icon;
+  @Prop() disabled;
+
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select>
+  <fancy-select-option
+    value="0"
+    icon="calendar">
+    Option 1
+  </fancy-select-option>
+  <fancy-select-option 
+    value="1"
+    disabled>
+    Option 2
+  </fancy-select-option>
+</fancy-select>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOption {
+
+  @Prop() value;
+
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOptionWithToggle {
+
+  @Prop() value;
+  @Prop() active;
+
+  render() {
+    return (
+      <div>
+        <slot />
+        <input 
+          type="checkbox" 
+          checked={this.active} />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select>
+  <fancy-select-option value="0">
+    Option 1
+  </fancy-select-option>
+  <fancy-select-option-with-toggle 
+    value="1"
+    active>
+    Option 2
+  </fancy-select-option-with-toggle>
+</fancy-select>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOption {
+
+  @Prop() value;
+
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOptionWithToggle {
+
+  @Prop() value;
+  @Prop() active;
+
+  render() {
+    return (
+      <div>
+        <slot />
+        <input 
+          type="checkbox" 
+          checked={this.active} />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select>
+  <fancy-select-option value="0">
+    Option 1
+  </fancy-select-option>
+  <fancy-select-option-with-toggle 
+    value="1"
+    active>
+    Option 2
+  </fancy-select-option-with-toggle>
+  <fancy-select-option-with-something 
+    value="2"
+    interestingProp="interestingValue">
+    Option 2
+  </fancy-select-option-with-something>
+</fancy-select>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Trick #2
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>
+    Make no assumptions, have no regrets
+  </b>
+</i>
+
+*Ask yourself, will it be too hard to add new features?*
+
+---
+
+## Did you see that repeated code?
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOption {
+
+  @Prop() value;
+
+  render() {
+    return (
+      <div>
+        <slot />
+      </div>
+    );
+  }
+}
+
+class FancySelectOptionWithToggle {
+
+  @Prop() value;
+  @Prop() active;
+
+  render() {
+    return (
+      <div>
+        <slot />
+        <input 
+          type="checkbox" 
+          checked={this.active} />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select>
+  <fancy-select-option value="0">
+    Option 1
+  </fancy-select-option>
+  <fancy-select-option-with-toggle 
+    value="1"
+    active>
+    Option 2
+  </fancy-select-option-with-toggle>
+  <fancy-select-option-with-something 
+    value="2"
+    interestingProp="interestingValue">
+    Option 2
+  </fancy-select-option-with-something>
+</fancy-select>
+```
+
+</Step>
+
+<Step>
+
+```diff 13,26
+```
+
+```diff 2[24:33],6[5:14],11[5:14]
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+### Let's talk about redundancy
+
+<img src={dry} style={{ width: '800px', margin: '50px 0' }} />
+
+---
+
+### Let's talk about redundancy
+
+<img src={dry} style={{ width: '800px', margin: '50px 0' }} />
+
+<img src={coupling} style={{ width: '800px', margin: '50px 0' }} />
+
+---
+
+### Let's talk about redundancy
+
+<img src={dry} style={{ width: '800px', margin: '50px 0' }} />
+
+<img src={coupling} style={{ width: '800px', margin: '50px 0' }} />
+
+*So, which one is the appropiate level of redundancy?*
+
+---
+
+<Audio 
+  src={back} 
+  autoplay 
+  volume={0.2} />
+
+<img src={depends} style={{ height: '100%' }} />
+
+---
+
+## What is a dependency anyways?
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```html title="HTML code" subtitle="card.html"
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+```
+
+</Step>
+
+<Step>
+
+```html title="HTML code" subtitle="card.html"
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+```
+
+</Step>
+
+<Step>
+
+```diff
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<img src={vein} style={{ height: '70%' }} />
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```html title="HTML code" subtitle="card.html"
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+```
+
+</Step>
+
+<Step>
+
+```diff 2,12
+```
+
+</Step>
+
+<Step>
+
+```diff 3:5,13:15
+```
+
+</Step>
+
+<Step>
+
+```diff 6:8,16:18
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="card.component.js"
+class Card {
+  render() {
+    return (
+      <section class="card">
+        <span class="close-icon"></span>
+        <slot name="header" />
+        <slot name="content" />
+      </section>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="card.html"
+<card>
+  <div slot="header">
+    Don't miss the opportunity
+  </div>
+  <div slot="content">
+    The card content
+  </div>
+</card>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="card.component.js"
+class Card {
+
+  @Prop() hasMinimize;
+
+  render() {
+    return (
+      <section class="card">
+        <span class="close-icon"></span>
+        {this.hasMinimize &&(
+          <span class="minimize-icon"></span>
+        )}
+        <slot name="header" />
+        <slot name="content" />
+      </section>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="card.html"
+<card hasMinimize>
+  <div slot="header">
+    Don't miss the opportunity
+  </div>
+  <div slot="content">
+    The card content
+  </div>
+</card>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="card.component.js"
+class Card {
+
+  @Prop() hasMinimize;
+  @Prop() hasA;
+  @Prop() hasB;
+  @Prop() hasC;
+  @Prop() hasD;
+  @Prop() hasE;
+
+  render() {
+    return (
+      <section class="card">
+        <span class="close-icon"></span>
+        {this.hasMinimize &&(
+          <span class="minimize-icon"></span>
+        )}
+        <slot name="header" />
+        <slot name="content" />
+      </section>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="card.html"
+<card hasMinimize>
+  <div slot="header">
+    Don't miss the opportunity
+  </div>
+  <div slot="content">
+    The card content
+  </div>
+</card>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```html title="HTML code" subtitle="card.html"
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+```
+
+</Step>
+
+<Step>
+
+```html title="HTML code" subtitle="card.html"
+<section class="card">
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+
+<section class="card">
+  <span class="minimize-icon"></span>
+  <span class="close-icon"></span>
+  <div class="header">
+    Don't miss the opportunity
+  </div>
+  <div class="content">
+    The card content
+  </div>
+</section>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Trick #3
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>Give redundancy a chance</b>
+</i>
+
+
+<span style={{ padding: '0 80px', textAlign: 'center' }}>
+  <i>Highly reusable functions or components aren't always the best choice</i><br />
+  <span style={{ color: '#ff7171' }}>
+    They force you to consider many cases, unless you design them extensible
+    enough
+  </span>
+</span>
+
+---
+
+# Remaining principles
+
+- Liskov substitution
+- Interface segregation
+- Dependency inversion
+
+---
+
+# Let's talk about interfaces
+
+<img src={inter} style={{ width: '950px', margin: '50px 0' }} />
+
+---
+
+# Let's talk about interfaces
+
+<img src={services} style={{ width: '800px', margin: '50px 0 50px -125px' }} />
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="container.component.js"
+class Container {
+  render() {
+    return (
+      <some-fancy-component
+        x={this.getX()}
+        y={this.getY()}
+        z={this.getZ()}
+        onA={this.handleOnA}
+        onB={this.handleOnB}
+        onC={this.handleOnC} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="container.html"
+<container></container>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="container.component.js"
+class Container {
+  render() {
+    return (
+      <some-fancy-component
+        x={this.getX()}
+        y={this.getY()}
+        z={this.getZ()}
+        onA={this.handleOnA}
+        onB={this.handleOnB}
+        onC={this.handleOnC}
+        usePlanB={this.shouldUsePlanB()} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="container.html"
+<container></container>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="container.component.js"
+class Container {
+  render() {
+    if (this.shouldUseFancyComponent) {
+      return (
+        <some-fancy-component
+          x={this.getX()}
+          y={this.getY()}
+          z={this.getZ()}
+          onA={this.handleOnA}
+          onB={this.handleOnB}
+          onC={this.handleOnC} />
+      );
+    }
+
+    return (
+      <some-fancynt-component
+        x={this.getX()}
+        f={this.getF()}
+        onC={this.handleOnC}
+        onH={this.handleOnH} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="container.html"
+<container></container>
+```
+
+</Step>
+
+<Step>
+
+```diff 6,11,17:20
+```
+
+```diff
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="container.component.js"
+class Container {
+  render() {
+    if (this.shouldUseFancyComponent) {
+      return (
+        <some-fancy-component
+          x={this.getX()}
+          y={this.getY()}
+          z={this.getZ()}
+          onA={this.handleOnA}
+          onB={this.handleOnB}
+          onC={this.handleOnC} />
+      );
+    }
+
+    return (
+      <some-fancynt-component
+        x={this.getX()}
+        y={this.getY()}
+        z={this.getZ()}
+        onA={this.handleOnA}
+        onB={this.handleOnB}
+        onC={this.handleOnC} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="container.html"
+<container></container>
+```
+
+</Step>
+
+<Step>
+
+```diff 6:11,17:22
+```
+
+```diff
+```
+
+</Step>
+
+<Step>
+
+```diff 3:23
+```
+
+```diff
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="container.component.js"
+class Container {
+  render() {
+    // ALERT! Pseudo code
+    const component = getTheRightComponent();
+    return (
+      <component 
+        x={this.getX()}
+        y={this.getY()}
+        z={this.getZ()}
+        onA={this.handleOnA}
+        onB={this.handleOnB}
+        onC={this.handleOnC} />
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="container.html"
+<container></container>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="container.component.js"
+getTheRightComponent() {
+  if (something) return 'fancy-component';
+  if (somethingElse) return 'another-component';
+  return 'solid-component';
+}
+```
+
+```html title="HTML code" subtitle="container.html"
+<container></container>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Trick #4
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>Allow your components to be easily exchangeable</b>
+</i>
+
+
+<span style={{ padding: '0 80px', textAlign: 'center' }}>
+  <i>
+    Make them follow an interface
+  </i><br />
+  <span style={{ color: '#479715' }}>
+    Turning your components into <b>abstractions</b> decoupled
+    from <b>concrete implementations</b>
+  </span>
+</span>
+
+---
+
+## Remember the assumptions trick?
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() value;
+
+  init() {
+    this.currentLabel = this.lookForTheSelectedLabel(this.value);
+  }
+
+  render() {
+    return (
+      <div>
+        <span class="picked-label">
+          {this.currentLabel}
+        </span>
+        <slot />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select value="One">
+  <select-option value="One" />
+  <select-option value="Two" />
+</fancy-select>
+```
+
+</Step>
+
+<Step>
+
+```diff 5:7
+```
+
+```diff 1[15:25]
+```
+
+</Step>
+
+<Step>
+
+```diff 13
+```
+
+```diff 1[15:25]
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() value;
+
+  init() {
+    this.currentLabel = this.lookForTheSelectedLabel(this.value);
+  }
+
+  render() {
+    return (
+      <div>
+        <span class="picked-label">
+          {this.currentLabel}
+        </span>
+        <slot />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select value="One">
+  <select-option value="One" />
+  <select-option value="Two" />
+</fancy-select>
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-select.component.js"
+class FancySelect {
+
+  @Prop() value;
+  @Watch('value')
+  onValueChange(newValue) {
+    this.currentLabel = this.lookForTheSelectedLabel(this.value);
+  }
+
+  render() {
+    return (
+      <div>
+        <span class="picked-label">
+          {this.currentLabel}
+        </span>
+        <slot />
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-select.html"
+<fancy-select value="One">
+  <select-option value="One" />
+  <select-option value="Two" />
+</fancy-select>
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Trick #5
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>React to props/children changes</b>
+</i>
+
+
+<span style={{ padding: '0 80px', textAlign: 'center' }}>
+  <i>
+    Be honest, nobody is going to read the documentation
+  </i> 🙄<br />
+  <span style={{ color: '#ff7171' }}>
+    Make your components lazy programmers proof
+  </span>
+</span>
+
+---
+
+## Something about performance?
+
+---
+
+## Something about performance?
+
+*yes*
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-whatever.component.js"
+class FancyWhatever {
+  render() {
+    return (
+      <div>
+        Im a nice component
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-whatever.html"
+<fancy-whatever />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-whatever.component.js"
+class FancyWhatever {
+
+  init() {
+    this.doALotOfStuff();
+  }
+
+  render() {
+    return (
+      <div>
+        Im a nice component
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-whatever.html"
+<fancy-whatever />
+```
+
+</Step>
+
+<Step>
+
+```jsx title="Component code" subtitle="fancy-whatever.component.js"
+class FancyWhatever {
+
+  init() {
+    this.doALotOfStuff();
+  }
+
+  async doALotOfStuff() {
+    console.log('Restart the modem');
+  }
+
+  render() {
+    return (
+      <div>
+        Im a nice component
+      </div>
+    );
+  }
+}
+```
+
+```html title="HTML code" subtitle="fancy-whatever.html"
+<fancy-whatever />
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+# Trick #6
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>Be lazy AF</b>
+</i>
+
+*Focus on the first paint, then load the rest*
+<span style={{ color: '#ff7171', marginTop: '-50px' }}>
+  Users will have a hard time while they see nothing
+</span>
+
+---
+
+## Last but not least
+
+---
+
+## Accessibility (A11y)
+
+<div style={{ textAlign: 'left', display: 'flex', alignItems: 'center', padding: '0 150px' }}>
+  <i>
+    "If you don't want to make accessible apps, you are a terrible person,
+    and you shouldn't be making apps for anybody." <b>@notwaldorf</b><br/>
+    <a style={{ fontSize: '30px' }} href="https://www.youtube.com/watch?v=zfQoleQEa4w">
+      Practical lessons from a year of building web components
+    </a>
+  </i>
+  <img src={wc} style={{ width: '550px', margin: '0 100px' }} />
+</div>
+
+---
+
+# Trick #7
+
+<i style={{ color: '#ff9221', margin: '30px 0' }}>
+  <b>Make your components accessible</b>
+</i>
+
+*Yeah, dont't remove the outline*
+<span style={{ color: '#ff7171', marginTop: '-50px' }}>
+  Users need to see where the focus is 🤦‍♂️
+</span>
+
+---
+
+# Thanks! 👋
+
+Enjoyed the talk? Sugest the [next](https://www.menti.com/civh1p82tx)!
+
+---
+
+# Repo
+
+[https://github.com/djguzmanc/content-projection-slides/tree/component-design-practices](https://github.com/djguzmanc/content-projection-slides/tree/component-design-practices)
+
+---
+
+<img src={end1} style={{ height: '100%' }} />
+
+---
+
+<img src={end2} style={{ height: '100%' }} />
+
